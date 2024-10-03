@@ -1,0 +1,58 @@
+{
+  "name": "electron-boilerplate",
+  "version": "1.0.0",
+  "description": "Large-scale Electron app boilerplate",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "concurrently \"webpack serve --config webpack.config.js --mode development\" \"wait-on http://localhost:9000 && cross-env NODE_ENV=development electron .\"",
+    "build": "webpack --config webpack.config.js --mode production",
+    "package": "npm run build && electron-builder build --publish never",
+    "publish": "npm run build && electron-builder build --publish always"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
+    "concurrently": "^6.2.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.2.6",
+    "electron": "^13.0.1",
+    "electron-builder": "^22.11.7",
+    "html-webpack-plugin": "^5.3.1",
+    "style-loader": "^2.0.0",
+    "wait-on": "^5.3.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "electron-updater": "^4.3.9",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "build": {
+    "appId": "net.rytale.electronboilerplate",
+    "productName": "Electron Boilerplate",
+    "files": [
+      "dist/**/*",
+      "src/main/**/*",
+      "src/updater/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
